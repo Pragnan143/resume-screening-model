@@ -1,5 +1,6 @@
 
 from fastapi import FastAPI, File, UploadFile, Form
+from mangum import Mangum
 import docx2txt
 import re
 import nltk
@@ -83,3 +84,4 @@ async def match_resume(file: UploadFile = File(...), job_description: str = Form
         "match_percentage": match_percentage,
         "descriptions": descriptions
     }
+handler = Mangum(app)
